@@ -1,4 +1,4 @@
-<img src="./oxoClone_readme.png" alt="oxo clone title" />
+<img src="./qnaboard_readme.png" alt="QnA board title" />
 
 <div align=center>
 
@@ -10,11 +10,15 @@
 
 ### Description of Project
 
-Why? <br>
-3명의 팀원들이 클론코딩을 완성 후 진행하는 Q&A 사이트 입니다.
+<b>Why?</b> <br/>
+현재 옥소폴리틱스의 QnA 게시판이 Notion으로 만들어져 있습니다. <br/>
+저희는 Notion 대신 옥소폴리틱스의 웹 서비스로 구현을 하였습니다.
 
-What? <br>
-<a href="https://www.oxopolitics.com/">옥소폴리틱스</a>의 노션으로 디자인 된 Q&A를 웹페이지로 제작하였습니다. 이 때, JSON 파일로 Page에 대한 정보를 가공하여 화면에 나타나도록 하였다.
+<b>What?</b> <br/>
+<a href="https://faq.oxopolitics.com/">옥소폴리틱스 QnA</a>의 노션으로 디자인 된 Q&A를 웹페이지로 제작하였습니다. <br/>
+
+<b>Preview</b><br/>
+<img src="./qnaboard_preview.png" alt="qnaboard preview">
 
 </div>
 
@@ -41,11 +45,11 @@ What? <br>
 
 ### Crew Info
 
-| TEAM                                | Position | Blog                                                      | Github                                                     |
-| ----------------------------------- | -------- | --------------------------------------------------------- | ---------------------------------------------------------- |
-| :wink: 이소윤 | FrontEnd | <a href="https://programmerplum.tistory.com/">tistory</a> | <a href="https://github.com/99dlthdbs">@99dlthdbs</a>      |
-| :sunglasses: 이기문                 | FrontEnd | <a href="https://velog.io/@kimoon212">velog</a>           | <a href="@kimoon1 ">@kimoon1</a>                           |
-| :laughing: 정영훈                   | FrontEnd | <a href="https://youngst.tistory.com/7">tistory</a>       | <a href="https://github.com/young-st511">@young-st5111</a> |
+| TEAM                | Position | Blog                                                      | Github                                                     |
+| ------------------- | -------- | --------------------------------------------------------- | ---------------------------------------------------------- |
+| :wink: 이소윤       | FrontEnd | <a href="https://programmerplum.tistory.com/">tistory</a> | <a href="https://github.com/99dlthdbs">@99dlthdbs</a>      |
+| :sunglasses: 이기문 | FrontEnd | <a href="https://velog.io/@kimoon212">velog</a>           | <a href="@kimoon1 ">@kimoon1</a>                           |
+| :laughing: 정영훈   | FrontEnd | <a href="https://youngst.tistory.com/7">tistory</a>       | <a href="https://github.com/young-st511">@young-st5111</a> |
 
 </div>
 
