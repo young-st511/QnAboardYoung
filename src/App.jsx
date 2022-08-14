@@ -1,11 +1,13 @@
 import React from 'react';
+import FaqBody from './components/FaqBody/FaqBody';
 import Header from './components/header/Header';
+import './App.css';
 
 function App() {
   return (
     <div>
-      메인페이지 입니다.
       <Header />
+      <FaqBody />
     </div>
   );
 }
