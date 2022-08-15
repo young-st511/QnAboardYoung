@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import AnswersContainer from './AnswersContainer';
-import Category from './category';
+import CategoriesContainer from './CategoriesContainer';
 import SearchBar from './SearchBar';
 
 const FaqBody = () => {
+  const [cate, setCate] = useState(0);
   return (
     <StyledWrapper>
       <h2>oxopolitics FAQ</h2>
-      <Category />
+      <CategoriesContainer cate={cate} setCate={setCate} />
       <SearchBar />
-      <AnswersContainer />
+      <AnswersContainer cate={cate} />
     </StyledWrapper>
   );
 };
@@ -26,5 +27,7 @@ const StyledWrapper = styled.div`
 
   h2 {
     margin: 0;
+    font-size: 24px;
+    font-weight: 700;
   }
 `;
