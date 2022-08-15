@@ -4,6 +4,73 @@ import IconHome from './icons/IconHome';
 import IconPoldi from './icons/IconPoldi';
 import IconChat from './icons/IconChat';
 
+function HeaderNav({ active, activeChange }) {
+  const navHandler = (e) => {
+    const el = e.target.closest('li');
+    const currentSvg = el.querySelector('path');
+    const navText = e.target.closest('li').classList.contains('active');
+    if (!navText) {
+      activeChange(el.className);
+      const prevActive = document.querySelector('.active');
+      if (prevActive) {
+        prevActive.classList.remove('active');
+        const prevSvg = prevActive.querySelector('path');
+        prevSvg.setAttribute('fill', '#e6e6e6');
+      }
+      el.classList.add('active');
+      currentSvg.setAttribute('fill', '#ffffff');
+    }
+  };
+
+  const mouseoverHandler = (e) => {
+    if (e.target.tagName === 'UL') return;
+    const el = e.target.closest('li');
+    const elSteate = el.classList.contains('active');
+    if (elSteate) {
+      const currentSvg = el.querySelector('path');
+      currentSvg.setAttribute('fill', '#e6e6e6');
+    }
+    el.classList.add('hover');
+  };
+
+  const mouseOutHandler = (e) => {
+    if (e.target.tagName === 'UL') return;
+    const el = e.target.closest('li');
+    el.classList.remove('hover');
+  };
+
+  useEffect(() => {
+    if (!active) return;
+    const activeList = document.querySelector(`.${active}`);
+    const activeSvg = activeList.querySelector('path');
+    activeList.classList.add('active');
+    activeSvg.setAttribute('fill', '#ffffff');
+  }, []);
+
+  return (
+    <Nav active={active}>
+      <ul
+        onClick={navHandler}
+        onMouseOver={mouseoverHandler}
+        onMouseOut={mouseOutHandler}>
+        <li className='IconHome'>
+          <IconHome color={'#e6e6e6'} />
+          <span>홈</span>
+        </li>
+        <li className='IconPoldi'>
+          <IconPoldi color={'#e6e6e6'} /> <span>폴디</span>
+        </li>
+        <li className='IconChat'>
+          <IconChat color={'#e6e6e6'} /> <span>톡</span>
+        </li>
+        {/* <li className='notice'>
+          <CreateImg src={'IconNotification'} /> <span>알림</span>
+        </li> */}
+      </ul>
+    </Nav>
+  );
+}
+
 const Nav = styled.nav`
   display: flex;
   width: 320px;
@@ -58,72 +125,5 @@ const Nav = styled.nav`
     color: #2f2f2f;
   }
 `;
-
-function HeaderNav({ active, activeChange }) {
-  const navHandler = (e) => {
-    const el = e.target.closest('li');
-    const currentSvg = el.querySelector('path');
-    const navText = e.target.closest('li').classList.contains('active');
-    if (!navText) {
-      activeChange(el.className);
-      const prevActive = document.querySelector('.active');
-      if(prevActive) {
-        prevActive.classList.remove('active');
-        const prevSvg = prevActive.querySelector('path');
-        prevSvg.setAttribute('fill', '#e6e6e6');
-      }
-      el.classList.add('active');
-      currentSvg.setAttribute('fill', '#ffffff');
-    }
-  };
-
-  const mouseoverHandler = (e) => {
-    if (e.target.tagName === 'UL') return;
-    const el = e.target.closest('li');
-    const elSteate = el.classList.contains('active');
-    if (elSteate) {
-      const currentSvg = el.querySelector('path');
-      currentSvg.setAttribute('fill', '#e6e6e6');
-    }
-    el.classList.add('hover');
-  };
-
-  const mouseOutHandler = (e) => {
-    if (e.target.tagName === 'UL') return;
-    const el = e.target.closest('li');
-    el.classList.remove('hover');
-  };
-
-  useEffect(() => {
-    if(!active) return;
-    const activeList = document.querySelector(`.${active}`);
-    const activeSvg = activeList.querySelector('path');
-    activeList.classList.add('active');
-    activeSvg.setAttribute('fill', '#ffffff');
-  }, []);
-
-  return (
-    <Nav active={active}>
-      <ul
-        onClick={navHandler}
-        onMouseOver={mouseoverHandler}
-        onMouseOut={mouseOutHandler}>
-        <li className='IconHome'>
-          <IconHome color={'#e6e6e6'} />
-          <span>홈</span>
-        </li>
-        <li className='IconPoldi'>
-          <IconPoldi color={'#e6e6e6'} /> <span>폴디</span>
-        </li>
-        <li className='IconChat'>
-          <IconChat color={'#e6e6e6'} /> <span>톡</span>
-        </li>
-        {/* <li className='notice'>
-          <CreateImg src={'IconNotification'} /> <span>알림</span>
-        </li> */}
-      </ul>
-    </Nav>
-  );
-}
 
 export default HeaderNav;
