@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const CategoriesContainer = (props) => {
+const CategoriesContainer = ({ cate, setCate }) => {
   const categoriesArr = [
     '자주 묻는 질문',
     '정치 성향별 다섯 부족',
@@ -12,15 +12,22 @@ const CategoriesContainer = (props) => {
     '프로필 설정',
   ];
 
+  const handleClick = (e) => {
+    if(e.target.tagName != 'BUTTON') return;
+    setCate(parseInt(e.target.value));
+  };
+
   return (
-    <StyledWrapper>
+    <StyledWrapper onClick={handleClick}>
       {categoriesArr.map((elem, idx) => (
-        <div
-        //! mockup idx 0일 때만 active 추가
-          className={`category${idx === 0 ? ' active' : ''}`}
-          key={{ idx }}>
+        <button
+          //! mockup idx 0일 때만 active 추가
+          className={`category${idx === cate ? ' active' : ''}`}
+          value={idx}
+          type='button'
+          key={idx}>
           {elem}
-        </div>
+        </button>
       ))}
     </StyledWrapper>
   );
@@ -33,7 +40,7 @@ const StyledWrapper = styled.div`
   flex-wrap: wrap;
   width: 709px;
   margin-top: 41px;
-  margin-bottom: 15px;
+  margin-bottom: 4px;
 
   .category {
     display: flex;
@@ -41,12 +48,15 @@ const StyledWrapper = styled.div`
     align-items: center;
     height: 42px;
     margin-right: 14px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     padding: 10px 16px;
     font-family: SUIT;
+    font-size: 16px;
+    font-weight: 600;
     background: #ffffff;
     border: 1px solid #e6e6e6;
     border-radius: 10px;
+    transition: color 0.2s, background-color 0.2s, border 0.2s;
   }
   .category.active {
     background: #000000;
