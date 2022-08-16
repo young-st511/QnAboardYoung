@@ -86,7 +86,7 @@ const StyledWrapper = styled.div`
     }
 
     span {
-      display: inline-block;
+      display: block;
     }
   }
 `;
