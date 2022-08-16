@@ -9,10 +9,12 @@ const FaqBody = () => {
 
   return (
     <StyledWrapper>
-      <h2>oxopolitics FAQ</h2>
-      <CategoriesContainer cate={cate} setCate={setCate} />
-      <SearchBar />
-      <AnswersContainer cate={cate} />
+      <div className='container'>
+        <h2>oxopolitics FAQ</h2>
+        <CategoriesContainer cate={cate} setCate={setCate} />
+        <SearchBar />
+        <AnswersContainer cate={cate} setCate={setCate} />
+      </div>
     </StyledWrapper>
   );
 };
@@ -30,5 +32,9 @@ const StyledWrapper = styled.div`
     margin: 0;
     font-size: 24px;
     font-weight: 700;
+  }
+  .container {
+    width: fit-content;
+    margin: 0 auto;
   }
 `;
