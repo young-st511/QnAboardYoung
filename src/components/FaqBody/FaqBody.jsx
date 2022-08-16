@@ -5,7 +5,7 @@ import CategoriesContainer from './CategoriesContainer';
 import SearchBar from './SearchBar';
 
 const FaqBody = () => {
-  const [cate, setCate] = useState('폴디');
+  const [cate, setCate] = useState('정치성향별 다섯 부족');
 
   return (
     <StyledWrapper>
