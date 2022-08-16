@@ -1,14 +1,17 @@
 import React from 'react';
-import FaqBody from './components/FaqBody/FaqBody';
-import Header from './components/header/Header';
+import Home from './routes/Home';
+import Auth from './routes/Auth';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 
 function App() {
   return (
-    <div>
-      <Header />
-      <FaqBody />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Auth />} />
+      </Routes>
+    </Router>
   );
 }
 
