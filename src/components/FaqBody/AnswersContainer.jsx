@@ -28,7 +28,6 @@ const AnswersContainer = ({ cate }) => {
 
   return (
     <StyledWrapper>
-      {/* <h3>{answersTitle[cate]}</h3> */}
       {!!answers &&
         answers.map((elem, idx) => (
           <Answer ansArr={elem} key={idx} idx={idx} />
