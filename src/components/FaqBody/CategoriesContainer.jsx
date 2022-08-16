@@ -11,7 +11,7 @@ const CategoriesContainer = ({ cate, setCate }) => {
   const getAnswers = async () => {
     const q = query(usersCollectionRef);
     onSnapshot(q, (snapshot) => {
-      let arr = [];
+      let arr = ['FAQ'];
       const dataArray = snapshot.docs.map((doc) => {
         let category = doc.data().category;
         if (!arr.includes(category)) {
@@ -28,13 +28,13 @@ const CategoriesContainer = ({ cate, setCate }) => {
 
   const handleClick = (e) => {
     if (e.target.tagName != 'BUTTON') return;
-    setCate(parseInt(e.target.value));
+    setCate(e.target.innerText);
   };
 
   return (
     <StyledWrapper onClick={handleClick}>
       {categoriesArr.map((elem, idx) => (
-        <Category elem={elem} cate={cate} idx={idx} key={idx} />
+        <Category elem={elem} cate={cate} key={idx} />
       ))}
     </StyledWrapper>
   );
