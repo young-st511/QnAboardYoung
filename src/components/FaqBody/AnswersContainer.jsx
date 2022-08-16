@@ -11,7 +11,7 @@ const AnswersContainer = ({ cate }) => {
   const [answers, setAnswers] = useState([]);
   const usersCollectionRef = collection(dbService, 'QnA');
 
-  const getData = async () => {
+  const getAnswers = async () => {
     const q = query(usersCollectionRef, where('category', '==', cate));
     onSnapshot(q, (snapshot) => {
       const dataArray = snapshot.docs.map((doc) => ({
@@ -23,7 +23,7 @@ const AnswersContainer = ({ cate }) => {
   };
 
   useEffect(() => {
-    getData();
+    getAnswers();
   }, []);
 
   return (
