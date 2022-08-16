@@ -25,8 +25,6 @@ const makeText = (answer) => {
     }
   }
 
-  console.log(text);
-
   return (
     <p>
       {text.map((el, idx) => (
