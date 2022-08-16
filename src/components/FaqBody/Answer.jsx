@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Answer = ({ ansArr: { title, answer }, idx }) => {
+const Answer = ({ ansArr: { question, answer }, idx }) => {
   //! Test
   const [active, setActive] = useState(idx === 0 ? true : false);
 
   return (
     <StyledWrapper className={`answerContainer${active ? ' active' : ''}`}>
       <h4 onClick={() => setActive((prev) => !prev)}>
-        {title}
+        {question}
         <img src='img/arrow.svg' alt='닫힌 질문' />
       </h4>
       {active ? <p>{makeText(answer)}</p> : null}
@@ -16,13 +16,13 @@ const Answer = ({ ansArr: { title, answer }, idx }) => {
   );
 };
 
-const makeText = (textArr) => {
-  return textArr.map((text, idx) => (
-    <span key={idx}>
-      {text}
+const makeText = (answer) => {
+  return (
+    <span>
+      {answer}
       <br />
     </span>
-  ));
+  );
 };
 
 export default Answer;

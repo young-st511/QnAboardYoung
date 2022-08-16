@@ -8,7 +8,7 @@ import { dbService } from '../../firebase';
 const AnswersContainer = ({ cate }) => {
   //! Mockup Data
   let ansArr = mockAnsArray;
-  const [datas, setDatas] = useState([]);
+  const [answers, setAnswers] = useState([]);
   const usersCollectionRef = collection(dbService, 'QnA');
 
   const getData = async () => {
@@ -18,7 +18,7 @@ const AnswersContainer = ({ cate }) => {
         id: doc.id,
         ...doc.data(),
       }));
-      setDatas(dataArray);
+      setAnswers(dataArray);
     });
   };
 
@@ -29,8 +29,8 @@ const AnswersContainer = ({ cate }) => {
   return (
     <StyledWrapper>
       {/* <h3>{answersTitle[cate]}</h3> */}
-      {!!ansArr[cate] &&
-        ansArr[cate].map((elem, idx) => (
+      {!!answers &&
+        answers.map((elem, idx) => (
           <Answer ansArr={elem} key={idx} idx={idx} />
         ))}
     </StyledWrapper>
