@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SearchBar = () => {
+  const [search, setSearch] = useState('');
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+  const handleClick = (e) => {
+    e.preventDefault();
+    setSearch('');
+  };
   return (
     <StyledWrapper>
       <form>
-        <input placeholder='검색' />
-        <button name='검색' type='button' />
+        <input placeholder='검색' onChange={handleChange} value={search} />
+        <input
+          aria-label='검색 버튼'
+          name='검색'
+          value={''}
+          className='searchButton'
+          type={'submit'}
+          onClick={handleClick}
+        />
       </form>
     </StyledWrapper>
   );
@@ -31,7 +46,7 @@ const StyledWrapper = styled.div`
       font-size: 16px;
       font-weight: 300;
     }
-    button {
+    .searchButton {
       position: absolute;
       width: 23px;
       height: 23px;
