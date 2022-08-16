@@ -5,7 +5,8 @@ import CategoriesContainer from './CategoriesContainer';
 import SearchBar from './SearchBar';
 
 const FaqBody = () => {
-  const [cate, setCate] = useState(0);
+  const [cate, setCate] = useState('폴디');
+
   return (
     <StyledWrapper>
       <h2>oxopolitics FAQ</h2>
