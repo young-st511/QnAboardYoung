@@ -11,17 +11,28 @@ const Answer = ({ ansArr: { question, answer }, idx }) => {
         {question}
         <img src='img/arrow.svg' alt='닫힌 질문' />
       </h4>
-      {active ? <p>{makeText(answer)}</p> : null}
+      {active ? <>{makeText(answer)}</> : null}
     </StyledWrapper>
   );
 };
 
 const makeText = (answer) => {
+  let answerSplit = answer.split('\\n');
+  let text = [];
+  for (let e of answerSplit) {
+    if (e) {
+      text.push(e);
+    }
+  }
+
+  console.log(text);
+
   return (
-    <span>
-      {answer}
-      <br />
-    </span>
+    <p>
+      {text.map((el, idx) => (
+        <span key={idx}>{el}</span>
+      ))}
+    </p>
   );
 };
 
@@ -34,6 +45,7 @@ const StyledWrapper = styled.div`
   margin-bottom: 20px;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
+
   h4 {
     display: flex;
     box-sizing: border-box;
@@ -65,11 +77,16 @@ const StyledWrapper = styled.div`
         top: 16px;
       }
     }
+
     p {
-      padding: 0px 60px 0 16px;
+      padding: 0px 30px 0 16px;
       font-weight: 400;
       font-size: 14px;
       line-height: 180%;
+    }
+
+    span {
+      display: block;
     }
   }
 `;
