@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function HeaderSearch() {
+  // dispatch(setState());
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  });
   return (
     <HeaderRightContainer>
       <StyledImg src={'img/IconSearch.svg'} alt={`search`} />
-      <LoginButton>로그인</LoginButton>
+
+      {isLoggedIn ? (
+        <Link to='/login'>로그아웃</Link>
+      ) : (
+        <Link to='/login'>로그인</Link>
+      )}
     </HeaderRightContainer>
   );
 }
@@ -29,7 +47,7 @@ const HeaderRightContainer = styled.div`
   }
 `;
 
-const LoginButton = styled.button`
+const LoginButton = styled.a`
   width: 120px;
   height: 45px;
   color: rgb(255, 255, 255);

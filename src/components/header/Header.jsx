@@ -1,14 +1,17 @@
-import { app } from '../../firebase';
+// import { app } from '../../firebase';
 
-import React, { useState } from 'react';
-import HeaderNav from './HeaderNav';
+import { onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { authService } from '../../firebase';
+
 import HeaderLogo from './HeaderLogo';
+import HeaderNav from './HeaderNav';
 import HeaderSearch from './HeaderSearch';
 
 function Header(props) {
   //! Test
-  console.log(app);
+  // console.log(app);
 
   const [navState, setNavState] = useState('');
 
