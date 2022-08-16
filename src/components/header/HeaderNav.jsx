@@ -7,11 +7,13 @@ import IconChat from './icons/IconChat';
 function HeaderNav({ active, activeChange }) {
   const navHandler = (e) => {
     const el = e.target.closest('li');
+    if (!el) return;
     const currentSvg = el.querySelector('path');
     const navText = e.target.closest('li').classList.contains('active');
     if (!navText) {
       activeChange(el.className);
-      const prevActive = document.querySelector('.active');
+      const $headerNav = document.querySelector('.headerNav');
+      const prevActive = $headerNav.querySelector('.active');
       if (prevActive) {
         prevActive.classList.remove('active');
         const prevSvg = prevActive.querySelector('path');
@@ -41,14 +43,14 @@ function HeaderNav({ active, activeChange }) {
 
   useEffect(() => {
     if (!active) return;
-    const activeList = document.querySelector(`.${active}`);
+    const activeList = this.querySelector(`.${active}`);
     const activeSvg = activeList.querySelector('path');
     activeList.classList.add('active');
     activeSvg.setAttribute('fill', '#ffffff');
   }, []);
 
   return (
-    <Nav active={active}>
+    <Nav active={active} className='headerNav'>
       <ul
         onClick={navHandler}
         onMouseOver={mouseoverHandler}
