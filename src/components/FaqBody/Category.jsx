@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Category = ({ idx, cate, elem }) => {
+const Category = ({ cate, elem }) => {
   return (
     <CategoryButton
       //! mockup idx 0일 때만 active 추가
-      className={idx === cate ? ' active' : ''}
-      value={idx}
+      className={elem === cate ? ' active' : ''}
+      value={elem}
       type='button'>
       {elem}
     </CategoryButton>

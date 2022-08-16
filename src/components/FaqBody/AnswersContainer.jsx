@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Answer from './Answer';
 import { query, collection, onSnapshot, where } from 'firebase/firestore';
-import { mockAnsArray, mockAnsTitles } from './mockData';
 import { dbService } from '../../firebase';
 
 const AnswersContainer = ({ cate }) => {
-  //! Mockup Data
-  let ansArr = mockAnsArray;
   const [answers, setAnswers] = useState([]);
   const usersCollectionRef = collection(dbService, 'QnA');
 
   const getAnswers = async () => {
-    const q = query(usersCollectionRef, where('category', '==', cate));
+    let q = '';
+    if (cate === 'FAQ') {
+      q = query(usersCollectionRef, orderBy('frequency', 'desc'), limit(5));
+    } else {
+      q = query(usersCollectionRef, where('category', '==', cate));
+    }
     onSnapshot(q, (snapshot) => {
       const dataArray = snapshot.docs.map((doc) => ({
         id: doc.id,
