@@ -10,7 +10,7 @@ function HeaderNav({ active, Change }) {
     if (!el) return;
     const currentSvg = el.querySelector('path');
     const navText = el.classList.contains('active');
-    console.log(active);
+    // console.log(active);
     Change('test');
     if (!navText) {
       console.log(`${el.classList.item(0)}`);
