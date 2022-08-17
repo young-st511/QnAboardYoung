@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Answer = ({ ansArr: { question, answer }, idx }) => {
-  //! Test
-  const [active, setActive] = useState(idx === 0 ? true : false);
+const Answer = ({ ansArr: { question, answer }, answerId }) => {
+  const [active, setActive] = useState(false);
+  const handleUpdate = (e) => {};
+  const handleDelete = (e) => {};
 
   return (
     <StyledWrapper className={`answerContainer${active ? ' active' : ''}`}>
-      <h4 onClick={() => setActive((prev) => !prev)}>
-        {question}
-        <img src='img/arrow.svg' alt='닫힌 질문' />
-      </h4>
+      <span>
+        <h4 onClick={() => setActive((prev) => !prev)}>{question}</h4>
+        <button onClick={handleUpdate} type='button'>
+          수정
+        </button>
+        <button onClick={handleDelete} type='button'>
+          삭제
+        </button>
+        <img src='img/arrow.svg' alt={active ? '닫힌 질문' : '열린 질문'} />
+      </span>
       {active ? <>{makeText(answer)}</> : null}
     </StyledWrapper>
   );
@@ -44,17 +51,20 @@ const StyledWrapper = styled.div`
   border: 1px solid #e6e6e6;
   border-radius: 10px;
 
-  h4 {
+  span {
     display: flex;
-    box-sizing: border-box;
-    align-items: center;
-    height: 46px;
-    margin: 0;
-    padding: 0px 16px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: default;
 
+    h4 {
+      display: flex;
+      box-sizing: border-box;
+      align-items: center;
+      height: 46px;
+      margin: 0;
+      padding: 0px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: default;
+    }
     img {
       position: absolute;
       width: 20px;
@@ -62,7 +72,8 @@ const StyledWrapper = styled.div`
       top: 17px;
     }
   }
-  &.active {
+
+  &.active span {
     h4 {
       height: 47px;
       padding-top: 1px;
@@ -75,16 +86,16 @@ const StyledWrapper = styled.div`
         top: 16px;
       }
     }
+  }
 
-    p {
-      padding: 0px 30px 0 16px;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 180%;
-    }
+  p {
+    padding: 0px 30px 0 16px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 180%;
+  }
 
-    span {
-      display: block;
-    }
+  span {
+    display: block;
   }
 `;

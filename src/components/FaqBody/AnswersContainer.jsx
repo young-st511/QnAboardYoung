@@ -32,8 +32,8 @@ const AnswersContainer = ({ cate }) => {
   return (
     <StyledWrapper>
       {!!answers &&
-        answers.map((elem, idx) => (
-          <Answer ansArr={elem} key={idx} idx={idx} />
+        answers.map((elem) => (
+          <Answer ansArr={elem} key={elem.id} answerId={elem.id} />
         ))}
     </StyledWrapper>
   );
