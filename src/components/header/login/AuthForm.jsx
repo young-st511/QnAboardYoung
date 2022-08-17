@@ -5,6 +5,8 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentUser } from '../../../app/CurrentUser';
 import styled from 'styled-components';
 
 export default function AuthForm() {
@@ -13,9 +15,15 @@ export default function AuthForm() {
   const [newAccount, setNewAccount] = useState(true);
   const [error, setError] = useState('');
   const auth = getAuth();
+  // const currentUser = useSelector((state) => state.currentUser.currentUser);
+  const dispatch = useDispatch();
+
+  // console.log(currentUser.value);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
+      dispatch(setCurrentUser({ email: `${user.email}`, uid: `${user.uid}` }));
+      // console.log(user.email);
       if (user) {
         if (window.location.href !== 'http://localhost:5173/') {
           window.location.href = '/';
