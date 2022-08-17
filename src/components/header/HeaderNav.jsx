@@ -6,24 +6,24 @@ import IconChat from './icons/IconChat';
 
 function HeaderNav({ active, Change }) {
   const navHandler = (e) => {
-    // const el = e.target.closest('li');
-    // if (!el) return;
-    // const currentSvg = el.querySelector('path');
-    // const navText = el.classList.contains('active');
-    // console.log(active);
-    // Change('test');
-    // if (!navText) {
-    //   console.log(`${el.classList.item(0)}`);
-    // const $headerNav = document.querySelector('.headerNav');
-    // const prevActive = document.querySelector('.active');
-    // if (prevActive) {
-    //   prevActive.classList.remove('active');
-    //   const prevSvg = prevActive.querySelector('path');
-    //   prevSvg.setAttribute('fill', '#e6e6e6');
-    // }
-    // el.classList.add('active');
-    // currentSvg.setAttribute('fill', '#ffffff');
-    // }
+    const el = e.target.closest('li');
+    if (!el) return;
+    const currentSvg = el.querySelector('path');
+    const navText = el.classList.contains('active');
+    console.log(active);
+    Change('test');
+    if (!navText) {
+      console.log(`${el.classList.item(0)}`);
+      const $headerNav = document.querySelector('.headerNav');
+      const prevActive = document.querySelector('.active');
+      if (prevActive) {
+        prevActive.classList.remove('active');
+        const prevSvg = prevActive.querySelector('path');
+        prevSvg.setAttribute('fill', '#e6e6e6');
+      }
+      el.classList.add('active');
+      currentSvg.setAttribute('fill', '#ffffff');
+    }
   };
 
   useEffect(() => {

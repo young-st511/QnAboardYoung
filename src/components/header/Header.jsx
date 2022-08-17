@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import HeaderLogo from './HeaderLogo';
@@ -6,11 +6,12 @@ import HeaderNav from './HeaderNav';
 import HeaderSearch from './HeaderSearch';
 
 function Header(props) {
+  const [active, setActive] = useState('IconHome');
   return (
     <>
       <Stylehaed className={props.className}>
         <HeaderLogo />
-        <HeaderNav />
+        <HeaderNav active={active} Change={setActive} />
         <HeaderSearch />
       </Stylehaed>
     </>
