@@ -28,7 +28,7 @@ const CategoriesContainer = ({ cate, setCate }) => {
 
   const handleClick = (e) => {
     if (e.target.tagName != 'BUTTON') return;
-    setCate(e.target.innerText);
+    setCate(e.target.value);
   };
 
   return (

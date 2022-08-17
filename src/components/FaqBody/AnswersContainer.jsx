@@ -11,7 +11,8 @@ const AnswersContainer = ({ cate }) => {
   const getAnswers = async () => {
     let q = '';
     if (cate === 'FAQ') {
-      q = query(usersCollectionRef, orderBy('frequency', 'desc'), limit(5));
+      q = query(usersCollectionRef, where('frequency', '>=', 5));
+      // orderBy('frequency', 'desc'), limit(4)
     } else {
       q = query(usersCollectionRef, where('category', '==', cate));
     }
@@ -26,7 +27,7 @@ const AnswersContainer = ({ cate }) => {
 
   useEffect(() => {
     getAnswers();
-  }, []);
+  }, [cate]);
 
   return (
     <StyledWrapper>
