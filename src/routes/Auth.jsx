@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { authService } from '../firebase';
 import {
   GoogleAuthProvider,
   GithubAuthProvider,
   signInWithPopup,
-  onAuthStateChanged,
 } from 'firebase/auth';
 import AuthForm from '../components/header/login/AuthForm';
+import styled from 'styled-components';
 
 const Auth = () => {
   const onSocialClick = async (event) => {
@@ -17,25 +17,36 @@ const Auth = () => {
     let provider;
     if (name === 'google') {
       provider = new GoogleAuthProvider();
-    } else if (name === 'github') {
-      provider = new GithubAuthProvider();
     }
+    // else if (name === 'github') {
+    //   provider = new GithubAuthProvider();
+    // }
 
     await signInWithPopup(authService, provider);
   };
   return (
-    <div className='authContainer'>
+    <LoginContainer>
       <AuthForm />
-      <div className='authBtns'>
-        <button onClick={onSocialClick} name='google' className='authBtn'>
+      <div>
+        <button onClick={onSocialClick} name='google'>
           Continue with Google.
         </button>
-        <button onClick={onSocialClick} name='github' className='authBtn'>
+        {/* <button onClick={onSocialClick} name='github'>
           Continue with Github.
-        </button>
+        </button> */}
       </div>
-    </div>
+    </LoginContainer>
   );
 };
 
 export default Auth;
+
+const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  border: 2px solid #e6e6e6;
+`;
