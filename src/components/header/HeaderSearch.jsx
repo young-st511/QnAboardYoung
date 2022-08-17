@@ -8,6 +8,10 @@ function HeaderSearch() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const auth = getAuth();
 
+  const onLogOutClick = () => {
+    auth.signOut();
+  };
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setIsLoggedIn(true);
@@ -20,9 +24,11 @@ function HeaderSearch() {
       <StyledImg src={'img/IconSearch.svg'} alt={`search`} />
 
       {isLoggedIn ? (
-        <Link to='/login'>로그아웃</Link>
+        <LoginButton to='/' onClick={onLogOutClick}>
+          로그아웃
+        </LoginButton>
       ) : (
-        <Link to='/login'>로그인</Link>
+        <LoginButton to='/login'>로그인</LoginButton>
       )}
     </HeaderRightContainer>
   );
@@ -47,17 +53,31 @@ const HeaderRightContainer = styled.div`
   }
 `;
 
-const LoginButton = styled.a`
+const LoginButton = styled(Link)`
   width: 120px;
   height: 45px;
-  color: rgb(255, 255, 255);
+
   background-color: rgb(47, 47, 47);
   border: none;
   border-radius: 10px;
+  outline: none;
+
+  color: rgb(255, 255, 255);
   font-weight: 600;
   font-size: 14px;
-  cursor: pointer;
   font-family: Roboto, sans-serif;
+  line-height: 45px;
+  text-decoration: none;
+  text-align: center;
+
+  cursor: pointer;
+  &:hover,
+  :active {
+    color: black;
+    background-color: #e6e6e6;
+    transition: 0.7s;
+    text-decoration: none;
+  }
 `;
 
 export default HeaderSearch;

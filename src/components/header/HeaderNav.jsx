@@ -7,20 +7,21 @@ import IconChat from './icons/IconChat';
 function HeaderNav({ active, activeChange }) {
   const navHandler = (e) => {
     const el = e.target.closest('li');
-    if (!el) return;
+    // if (!el) return;
     const currentSvg = el.querySelector('path');
-    const navText = e.target.closest('li').classList.contains('active');
+    const navText = el.classList.contains('active');
     if (!navText) {
       activeChange(el.className);
-      const $headerNav = document.querySelector('.headerNav');
-      const prevActive = $headerNav.querySelector('.active');
-      if (prevActive) {
-        prevActive.classList.remove('active');
-        const prevSvg = prevActive.querySelector('path');
-        prevSvg.setAttribute('fill', '#e6e6e6');
-      }
-      el.classList.add('active');
-      currentSvg.setAttribute('fill', '#ffffff');
+      console.log(el.className);
+      // const $headerNav = document.querySelector('.headerNav');
+      // const prevActive = document.querySelector('.active');
+      // if (prevActive) {
+      //   prevActive.classList.remove('active');
+      //   const prevSvg = prevActive.querySelector('path');
+      //   prevSvg.setAttribute('fill', '#e6e6e6');
+      // }
+      // el.classList.add('active');
+      // currentSvg.setAttribute('fill', '#ffffff');
     }
   };
 

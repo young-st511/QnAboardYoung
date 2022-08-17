@@ -1,9 +1,6 @@
-// import { app } from '../../firebase';
-
-import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { authService } from '../../firebase';
+import { app } from '../../firebase';
 
 import HeaderLogo from './HeaderLogo';
 import HeaderNav from './HeaderNav';
