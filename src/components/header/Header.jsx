@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { app } from '../../firebase';
 
 import HeaderLogo from './HeaderLogo';
 import HeaderNav from './HeaderNav';
 import HeaderSearch from './HeaderSearch';
 
 function Header(props) {
-  //! Test
-  // console.log(app);
-
-  const [navState, setNavState] = useState('');
-
-  const navHandler = (text) => {
-    setNavState(text);
-  };
-
   return (
     <>
       <Stylehaed className={props.className}>
         <HeaderLogo />
-        <HeaderNav activeChange={navHandler} active={navState} />
+        <HeaderNav />
         <HeaderSearch />
       </Stylehaed>
     </>
