@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setCurrentUser } from '../../app/CurrentUser';
 
 function HeaderSearch() {
   // dispatch(setState());
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const auth = getAuth();
+  const dispath = useDispatch();
 
-  const onLogOutClick = () => {
+  const onLogOutClick = (e) => {
+    e.persist();
     auth.signOut();
+    setIsLoggedIn((prev) => !prev);
+    // dispath(setCurrentUser({ email: '', uid: '' }));
   };
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, []);
   return (
     <HeaderRightContainer>
       <StyledImg src={'img/IconSearch.svg'} alt={`search`} />

@@ -12,7 +12,7 @@ import styled from 'styled-components';
 export default function AuthForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [newAccount, setNewAccount] = useState(true);
+  const [newAccount, setNewAccount] = useState(false);
   const [error, setError] = useState('');
   const auth = getAuth();
   // const currentUser = useSelector((state) => state.currentUser.currentUser);
@@ -22,9 +22,11 @@ export default function AuthForm() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      dispatch(setCurrentUser({ email: `${user.email}`, uid: `${user.uid}` }));
       // console.log(user.email);
       if (user) {
+        dispatch(
+          setCurrentUser({ email: `${user.email}`, uid: `${user.uid}` })
+        );
         if (window.location.href !== 'http://localhost:5173/') {
           window.location.href = '/';
         }
