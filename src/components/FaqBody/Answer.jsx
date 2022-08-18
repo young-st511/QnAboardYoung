@@ -1,15 +1,69 @@
+import { doc, updateDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { dbService } from '../../firebase';
 
-const Answer = ({ ansArr: { question, answer }, answerId }) => {
+const Answer = ({ ansArr: { title, description }, answerId }) => {
   const [active, setActive] = useState(false);
-  const handleUpdate = (e) => {};
+  const [isEdit, setIsEdit] = useState(false);
+  const QnATextRef = doc(dbService, 'FAQboard', answerId);
+
+  const handleUpdate = (e) => {
+    setIsEdit(true);
+  };
   const handleDelete = (e) => {};
+
+  const getEditForm = () => {
+    return (
+      <form onSubmit={handleEditSubmit}>
+        <input id='title' type='text' placeholder='제목' required />
+        <input id='description' type='text' placeholder='내용' required />
+        <select id='category'>
+          <option value=''>--Please choose an option--</option>
+          <option value='FAQ'>FAQ</option>
+          <option value='피드백'>피드백</option>
+          <option value='매너지수'>매너지수</option>
+          <option value='기타_서비스_기능'>기타 서비스 기능</option>
+          <option value='프로필_설정'>프로필 설정</option>
+          <option value='옥소코인'>옥소코인</option>
+          <option value='알림설정'>알림 설정</option>
+          <option value='폴디'>폴디</option>
+          <option value='정치성향별_다섯_부족'>정치성향별 다섯 부족</option>
+          <option value='그룹'>그룹</option>
+        </select>
+        <input type='submit' value='수정' />
+      </form>
+    );
+  };
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+
+    const { target } = e;
+    const titleText = target.querySelector('#title').value;
+    const categoryText = target.querySelector('#category').value;
+    const descriptionText = target.querySelector('#description').value;
+    const timeSet = new Date();
+
+    const data = {
+      title: titleText,
+      description: descriptionText,
+      category: categoryText,
+      updatedAt: timeSet,
+    };
+
+    const ok = window.confirm('글을 수정하시겠습니까?');
+    if (ok) {
+      await updateDoc(QnATextRef, data);
+    }
+
+    setIsEdit(false);
+  };
 
   return (
     <StyledWrapper className={`answerContainer${active ? ' active' : ''}`}>
       <span>
-        <h4 onClick={() => setActive((prev) => !prev)}>{question}</h4>
+        <h4 onClick={() => setActive((prev) => !prev)}>{title}</h4>
         <button onClick={handleUpdate} type='button'>
           수정
         </button>
@@ -18,7 +72,8 @@ const Answer = ({ ansArr: { question, answer }, answerId }) => {
         </button>
         <img src='img/arrow.svg' alt={active ? '닫힌 질문' : '열린 질문'} />
       </span>
-      {active ? <>{makeText(answer)}</> : null}
+      {isEdit && <>{getEditForm()}</>}
+      {active && !isEdit ? <>{makeText(description)}</> : null}
     </StyledWrapper>
   );
 };
