@@ -1,12 +1,19 @@
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { dbService } from '../../firebase';
 
-const Answer = ({ ansArr: { title, description }, answerId }) => {
+const Answer = ({ ansArr: { title, description, viewCount }, answerId }) => {
   const [active, setActive] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const QnATextRef = doc(dbService, 'FAQboard', answerId);
+  const [answerViewCount, setAnswerViewCount] = useState(viewCount);
+  const QnATextRef = doc(dbService, 'QnA', answerId);
+
+  const increaseViewCount = async () => {
+    await updateDoc(QnATextRef, {
+      viewCount: answerViewCount,
+    });
+  };
 
   const handleUpdate = (e) => {
     setIsEdit(true);
@@ -64,10 +71,19 @@ const Answer = ({ ansArr: { title, description }, answerId }) => {
     setIsEdit(false);
   };
 
+  const answerCardClick = () => {
+    setActive((prev) => !prev);
+
+    if (!active) {
+      setAnswerViewCount((prev) => prev + 1);
+      increaseViewCount();
+    }
+  };
+
   return (
     <StyledWrapper className={`answerContainer${active ? ' active' : ''}`}>
       <span>
-        <h4 onClick={() => setActive((prev) => !prev)}>{title}</h4>
+        <h4 onClick={answerCardClick}>{title}</h4>
         <button onClick={handleUpdate} type='button'>
           수정
         </button>
