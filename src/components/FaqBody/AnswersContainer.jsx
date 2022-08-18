@@ -6,12 +6,12 @@ import { dbService } from '../../firebase';
 
 const AnswersContainer = ({ cate }) => {
   const [answers, setAnswers] = useState([]);
-  const usersCollectionRef = collection(dbService, 'QnA');
+  const usersCollectionRef = collection(dbService, 'FAQboard');
 
   const getAnswers = async () => {
     let q = '';
     if (cate === 'FAQ') {
-      q = query(usersCollectionRef, where('frequency', '>=', 5));
+      q = query(usersCollectionRef, where('view count', '>=', 5));
       // orderBy('frequency', 'desc'), limit(4)
     } else {
       q = query(usersCollectionRef, where('category', '==', cate));
