@@ -7,6 +7,7 @@ import WritingAdmin from './WritingAdmin';
 
 const FaqBody = ({ currentUser }) => {
   const [cate, setCate] = useState('정치성향별 다섯 부족');
+  const [search, setSearch] = useState('');
 
   return (
     <StyledWrapper>
@@ -15,8 +16,8 @@ const FaqBody = ({ currentUser }) => {
         <WritingAdmin User={currentUser} />
 
         <CategoriesContainer cate={cate} setCate={setCate} />
-        <SearchBar />
-        <AnswersContainer cate={cate} setCate={setCate} />
+        <SearchBar search={search} setSearch={setSearch}/>
+        <AnswersContainer cate={cate} setCate={setCate} search={search} />
       </div>
     </StyledWrapper>
   );

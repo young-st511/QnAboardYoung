@@ -11,7 +11,7 @@ import {
 } from 'firebase/firestore';
 import { dbService } from '../../firebase';
 
-const AnswersContainer = ({ cate }) => {
+const AnswersContainer = ({ cate, search }) => {
   const [answers, setAnswers] = useState([]);
   const usersCollectionRef = collection(dbService, 'QnA');
 
@@ -38,9 +38,20 @@ const AnswersContainer = ({ cate }) => {
   return (
     <StyledWrapper>
       {!!answers &&
-        answers.map((elem) => (
-          <Answer ansArr={elem} key={elem.id} answerId={elem.id} />
-        ))}
+        answers
+          .filter(
+            (ans) =>
+              ans.title.includes(search) || ans.description.includes(search)
+          )
+          .map((elem) => (
+            <Answer
+              ansArr={elem}
+              key={elem.id}
+              answerId={elem.id}
+              cate={cate}
+              search={search}
+            />
+          ))}
     </StyledWrapper>
   );
 };

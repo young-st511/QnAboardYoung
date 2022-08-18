@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const SearchBar = () => {
-  const [search, setSearch] = useState('');
+const SearchBar = ({ search, setSearch }) => {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-  const handleClick = (e) => {
+  const handleClear = (e) => {
     e.preventDefault();
+    console.log('clear');
     setSearch('');
   };
   return (
-    <StyledWrapper>
+    <StyledWrapper search={search}>
       <form>
         <input placeholder='검색' onChange={handleChange} value={search} />
-        <input
-          aria-label='검색 버튼'
-          name='검색'
-          value={''}
-          className='searchButton'
-          type={'submit'}
-          onClick={handleClick}
-        />
+        <button
+          className='clearButton'
+          type={'button'}
+          onClick={handleClear}
+          disabled={!search}>
+          초기화
+        </button>
       </form>
     </StyledWrapper>
   );
@@ -46,19 +45,24 @@ const StyledWrapper = styled.div`
       font-size: 16px;
       font-weight: 300;
     }
-    .searchButton {
+    .clearButton {
       position: absolute;
-      width: 23px;
-      height: 23px;
-      right: 10px;
-      bottom: 10px;
-      cursor: default;
+      width: 90px;
+      height: 100%;
+      padding: 0;
+      right: 0px;
+      font-size: 16px;
+      font-weight: 500;
+      color: white;
       border: none;
-      background-color: white;
-      background-position: center;
-      background-size: 20px;
-      background-repeat: no-repeat;
-      background-image: url('img/IconSearch92.svg');
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
+      background-color: black;
+      z-index: 1;
+    }
+    .clearButton:disabled {
+      background-color: #929292;
+      cursor: default;
     }
   }
 `;
