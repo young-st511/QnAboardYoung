@@ -38,12 +38,14 @@ const Answer = ({
       setEditTitle(title);
     }
     setIsEdit(!isEdit);
+    e.stopPropagation();
   };
   const handleDelete = async (e) => {
     const ok = window.confirm('글을 삭제하시겠습니까?');
     if (ok) {
       await deleteDoc(QnATextRef);
     }
+    e.stopPropagation();
   };
 
   const getEditForm = () => {
@@ -125,10 +127,8 @@ const Answer = ({
 
   return (
     <StyledWrapper className={`answerContainer${active ? ' active' : ''}`}>
-      <span>
-        <h4 onClick={answerCardClick}>
-          {search ? highlightText(title, search) : title}
-        </h4>
+      <span onClick={answerCardClick}>
+        <h4>{search ? highlightText(title, search) : title}</h4>
         <div className='adminButtons'>
           <button onClick={handleUpdate} type='button'>
             {isEdit ? '취소' : '수정'}
