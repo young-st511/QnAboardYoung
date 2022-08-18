@@ -1,4 +1,4 @@
-import { doc, updateDoc } from 'firebase/firestore';
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { dbService } from '../../firebase';
@@ -11,7 +11,12 @@ const Answer = ({ ansArr: { title, description }, answerId }) => {
   const handleUpdate = (e) => {
     setIsEdit(true);
   };
-  const handleDelete = (e) => {};
+  const handleDelete = async (e) => {
+    const ok = window.confirm('글을 삭제하시겠습니까?');
+    if (ok) {
+      await deleteDoc(QnATextRef);
+    }
+  };
 
   const getEditForm = () => {
     return (
@@ -20,7 +25,6 @@ const Answer = ({ ansArr: { title, description }, answerId }) => {
         <input id='description' type='text' placeholder='내용' required />
         <select id='category'>
           <option value=''>--Please choose an option--</option>
-          <option value='FAQ'>FAQ</option>
           <option value='피드백'>피드백</option>
           <option value='매너지수'>매너지수</option>
           <option value='기타_서비스_기능'>기타 서비스 기능</option>
