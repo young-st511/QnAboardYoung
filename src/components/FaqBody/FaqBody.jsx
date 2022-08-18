@@ -13,6 +13,7 @@ const FaqBody = ({ currentUser }) => {
       <div className='container'>
         <h2>oxopolitics FAQ</h2>
         <WritingAdmin User={currentUser} />
+
         <CategoriesContainer cate={cate} setCate={setCate} />
         <SearchBar />
         <AnswersContainer cate={cate} setCate={setCate} />
