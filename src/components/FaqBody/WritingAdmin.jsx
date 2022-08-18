@@ -4,16 +4,11 @@ import { collection, addDoc, getFirestore } from 'firebase/firestore';
 import { app } from '../../firebase';
 
 function WritingAdmin({ User }) {
-  const [textvalue, setTextvalue] = useState('');
   const [editBtn, setEditBtn] = useState(false);
-
-  const texthandler = (e) => {
-    setTextvalue(e.target.value);
-  };
 
   const toggleBtnHandler = () => {
     setEditBtn((prev) => !prev);
-    console.log(editBtn);
+    // console.log(editBtn);
   };
 
   const onSubmit = async (e) => {
@@ -27,12 +22,12 @@ function WritingAdmin({ User }) {
       title: titleText,
       description: descriptionText,
       category: categoryText,
-      'view count': 0,
+      viewCount: 0,
       createdAt: timeSet,
       updatedAt: timeSet,
     };
     const db = getFirestore(app);
-    const docRef = await addDoc(collection(db, 'FAQboard'), data);
+    const docRef = await addDoc(collection(db, 'QnA'), data);
     toggleBtnHandler();
     // console.log(data);
   };
@@ -59,7 +54,6 @@ function WritingAdmin({ User }) {
         <StyledLabel htmlFor='qnaCategory'>카테고리</StyledLabel>
         <QnaCategoryBox id='qnaCategory'>
           <option value=''>--Please choose an option--</option>
-          <option value='FAQ'>FAQ</option>
           <option value='피드백'>피드백</option>
           <option value='매너지수'>매너지수</option>
           <option value='기타_서비스_기능'>기타 서비스 기능</option>
@@ -71,12 +65,7 @@ function WritingAdmin({ User }) {
           <option value='그룹'>그룹</option>
         </QnaCategoryBox>
         <StyledLabel htmlFor='description'>본문</StyledLabel>
-        <TextAreaBox
-          id='description'
-          maxLength={1500}
-          // value={textvalue}
-          // onChange={texthandler}
-        />
+        <TextAreaBox id='description' maxLength={1500} />
         <input type='submit' value='작성하기' />
       </StyledFormBox>
     );
