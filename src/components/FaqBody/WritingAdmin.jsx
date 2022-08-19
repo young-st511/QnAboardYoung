@@ -66,7 +66,7 @@ function WritingAdmin({ User }) {
         </QnaCategoryBox>
         <StyledLabel htmlFor='description'>본문</StyledLabel>
         <TextAreaBox id='description' maxLength={1500} />
-        <input type='submit' value='작성하기' />
+        <input type='submit' value='작성하기' className='submit' />
       </StyledFormBox>
     );
   };
@@ -91,10 +91,17 @@ export default WritingAdmin;
 const EditingContainer = styled.div`
   display: flex;
   width: ${(props) => (props.editBtn ? 100 : 10)}%;
-
   position: relative;
   top: ${(props) => (props.editBtn ? 0 : -30)}px;
   margin-left: ${(props) => (props.editBtn ? 0 : 'auto')};
+  .submit {
+    width: 80px;
+    height: 37px;
+    margin: 0 7px 10px 640px;
+    border-radius: 7px;
+    background-color: black;
+    color: white;
+  }
 `;
 
 const StyledFormBox = styled.form`
@@ -102,12 +109,14 @@ const StyledFormBox = styled.form`
   flex-direction: column;
   width: 100%;
   position: relative;
+  font-size: 16px;
 `;
 
 const TitleBox = styled.input`
   outline: none;
   border-radius: 5px;
   border: 2px solid #e6e6e6;
+  height: 30px;
 
   font-weight: bold;
 
@@ -120,6 +129,7 @@ const QnaCategoryBox = styled.select`
   outline: none;
   border-radius: 5px;
   border: 2px solid #e6e6e6;
+  height: 30px;
 
   font-weight: bold;
   option {
@@ -167,7 +177,7 @@ const StyledEditing = styled.input`
 `;
 
 const StyledLabel = styled.label`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
 
