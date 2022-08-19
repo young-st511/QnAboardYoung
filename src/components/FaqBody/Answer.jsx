@@ -2,6 +2,7 @@ import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { dbService } from '../../firebase';
+import { useSelector } from 'react-redux';
 
 const Answer = ({
   ansArr: { title, description, viewCount },
@@ -14,6 +15,7 @@ const Answer = ({
   const [editText, setEditText] = useState('');
   const [editTitle, setEditTitle] = useState('');
   const [answerViewCount, setAnswerViewCount] = useState(viewCount);
+  const currentUser = useSelector((state) => state.currentUser.currentUser.value.uid);
   const QnATextRef = doc(dbService, 'QnA', answerId);
 
   useEffect(() => {
@@ -129,14 +131,16 @@ const Answer = ({
     <StyledWrapper className={`answerContainer${active ? ' active' : ''}`}>
       <span onClick={answerCardClick}>
         <h4>{search ? highlightText(title, search) : title}</h4>
-        <div className='adminButtons'>
-          <button onClick={handleUpdate} type='button'>
-            {isEdit ? '취소' : '수정'}
-          </button>
-          <button onClick={handleDelete} type='button'>
-            삭제
-          </button>
-        </div>
+        {validAdmin(currentUser) ? (
+          <div className='adminButtons'>
+            <button onClick={handleUpdate} type='button'>
+              {isEdit ? '취소' : '수정'}
+            </button>
+            <button onClick={handleDelete} type='button'>
+              삭제
+            </button>
+          </div>
+        ) : null}
         <img src='img/arrow.svg' alt={active ? '닫힌 질문' : '열린 질문'} />
       </span>
       {isEdit && <>{getEditForm()}</>}
@@ -181,6 +185,16 @@ const makeText = (answer, search) => {
       })}
     </p>
   );
+};
+
+const validAdmin = (id) => {
+  const ADMIN_UID = 'SOT3U2CfXxXlIJxUYkh79gD7WYj1';
+  console.log(id);
+  if (id === ADMIN_UID) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 export default Answer;
