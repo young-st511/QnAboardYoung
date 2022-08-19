@@ -3,12 +3,12 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
-  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGEIN_ID,
-  appId: import.meta.env.VITE_APP_ID,
+  apiKey: 'AIzaSyB0BSlU8s4G5PEnk6guraYVScT7ynBVMXk',
+  authDomain: 'oxoqna.firebaseapp.com',
+  projectId: 'oxoqna',
+  storageBucket: 'oxoqna.appspot.com',
+  messagingSenderId: '434224691922',
+  appId: '1:434224691922:web:96fe96fe1fce9d060ecb0b',
 };
 
 export const app = initializeApp(firebaseConfig);
