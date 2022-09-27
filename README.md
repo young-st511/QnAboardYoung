@@ -6,6 +6,8 @@
 
 <div style="margin-bottom: 30px;">
 
+배포 링크: [https://oxopolitics-internship-for-zerobase.github.io/cra_faq.github.io/](https://oxopolitics-internship-for-zerobase.github.io/cra_faq.github.io/)
+
 <div style="margin-bottom: 30px;">
 
 ### Description of Project
