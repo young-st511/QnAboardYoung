@@ -1,32 +1,28 @@
-<img src="./qnaboard_readme.png" alt="QnA board title" />
+# 배포링크
+> [https://qna-board-young.vercel.app](https://qna-board-young.vercel.app/)
 
 <div align=center>
 
+<img width="800px" align=center src="./qnaboard_readme.png" alt="QnA board title" />
+<br />
+<br />
 <h1>oxopolitics QnA 게시판입니다!</h1>
 
-<div style="margin-bottom: 30px;">
+## Description of Project
 
-배포 링크: [https://oxopolitics-internship-for-zerobase.github.io/cra_faq.github.io/](https://oxopolitics-internship-for-zerobase.github.io/cra_faq.github.io/)
-
-<div style="margin-bottom: 30px;">
-
-### Description of Project
-
-<b>Why?</b> <br/>
+### Why?
 현재 옥소폴리틱스의 QnA 게시판이 Notion으로 만들어져 있습니다. <br/>
 저희는 Notion 대신 옥소폴리틱스의 웹 서비스로 구현을 하였습니다.
 
-<b>What?</b> <br/>
-<a href="https://faq.oxopolitics.com/">옥소폴리틱스 QnA</a>의 노션으로 디자인 된 Q&A를 웹페이지로 제작하였습니다. <br/>
+### What?
+<a href="https://faq.oxopolitics.com/">옥소폴리틱스 QnA</a>의 노션으로 디자인 된 Q&A를 웹페이지로 제작하였습니다.  
 
-<b>Preview</b><br/>
-<img src="./qnaboard_preview.png" alt="qnaboard preview">
+### Preview
+<img width="600px" src="./qnaboard_preview.png" alt="qnaboard preview">
 
-</div>
-
-<div style="margin-bottom: 30px;">
-
-</div>
+<br />
+<br />
+<br />
 
 ### Tech Stacks
 
@@ -41,9 +37,7 @@
 <!-- FireBase -->
 <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black"/>
 
-</div>
 
-<div>
 
 ### Crew Info
 
@@ -53,6 +47,5 @@
 | :sunglasses: 이기문 | FrontEnd | <a href="https://velog.io/@kimoon212">velog</a>           | <a href="@kimoon1 ">@kimoon1</a>                           |
 | :laughing: 정영훈   | FrontEnd | <a href="https://youngst.tistory.com/7">tistory</a>       | <a href="https://github.com/young-st511">@young-st5111</a> |
 
-</div>
 
 </div>
