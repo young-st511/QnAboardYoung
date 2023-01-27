@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Category from './category';
+import Category from './Category';
 import { query, collection, onSnapshot } from 'firebase/firestore';
 import { dbService } from '../../firebase';
 
